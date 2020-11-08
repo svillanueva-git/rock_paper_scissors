@@ -8,29 +8,42 @@
 </head>
 <body>
     <script>
-    let computerSelection = computerPlay;
-    let playerSelection = prompt("Do you choose Rock, Paper, or Scissors?").toLowerCase();
+    let playerAnswer = prompt("Do you choose Rock, Paper, or Scissors?");
+    let computerSelection = computerPlay();
+    let playerSelection = playerAnswer[0].toUpperCase() + playerAnswer.substring(1);
 
     // Create function that randomly returns Rock, Paper, or Scissors
-    // This function is used for the computer's play
+    // This function is used for the computer's hand
     function computerPlay() {
-        let computerChoices = ['rock', 'paper', 'scissors']
+        let computerChoices = ['Rock', 'Paper', 'Scissors']
         let computerRandom = Math.floor(Math.random() * 3);
         return computerChoices[computerRandom];
     }
 
     // Create a function that plays a single round of RPS
-    function oneRound(playerSelection, computerSelection) {
-        // This capitalizes the first letter of each player's hand
-        playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
-        computerSelection = computerSelection[0].toUpperCase() + computerSelection.substring(1);
-
-        if (playerSelection === computerSelection) {
-            alert(`Its a tie! ${playerSelection} is equal to ${computerSelection}.`);
-        } else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
-            alert(`You lost! `)
-        }
+    switch (true) {
+        // These are the player's winning combinations
+        case playerSelection == 'Rock' && computerSelection == 'Scissors':
+        case playerSelection == 'Paper' && computerSelection == 'Rock':
+        case playerSelection == 'Scissors' && computerSelection == 'Paper':
+            console.log(`You've Won! ${playerSelection} beats ${computerSelection}!`);
+            break;
+        // These are the player's losing combinations
+        case playerSelection == 'Rock' && computerSelection == 'Paper':
+        case playerSelection == 'Paper' && computerSelection == 'Scissors':
+        case playerSelection == 'Scissors' && computerSelection == 'Rock':
+            console.log(`You've Lost! ${playerSelection} loses to ${computerSelection}.`);
+            break;
+        
+        default:
+            console.log(`It's a tie! ${playerSelection} equals ${computerSelection}.`);
     }
+
+
+
+
+
+    
     </script>
 </body>
 </html>
