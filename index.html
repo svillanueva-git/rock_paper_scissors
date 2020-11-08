@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+    let computerSelection = computerPlay;
+    let playerSelection = prompt("Do you choose Rock, Paper, or Scissors?").toLowerCase();
+
+    // Create function that randomly returns Rock, Paper, or Scissors
+    // This function is used for the computer's play
+    function computerPlay() {
+        let computerChoices = ['rock', 'paper', 'scissors']
+        let computerRandom = Math.floor(Math.random() * 3);
+        return computerChoices[computerRandom];
+    }
+
+    // Create a function that plays a single round of RPS
+    function oneRound(playerSelection, computerSelection) {
+        // This capitalizes the first letter of each player's hand
+        playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
+        computerSelection = computerSelection[0].toUpperCase() + computerSelection.substring(1);
+
+        if (playerSelection === computerSelection) {
+            alert(`Its a tie! ${playerSelection} is equal to ${computerSelection}.`);
+        } else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
+            alert(`You lost! `)
+        }
+    }
+    </script>
+</body>
+</html>
