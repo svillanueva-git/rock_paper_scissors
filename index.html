@@ -8,36 +8,46 @@
 </head>
 <body>
     <script>
-    let playerAnswer = prompt("Do you choose Rock, Paper, or Scissors?");
+    
+
     let computerSelection = computerPlay();
-    let playerSelection = playerAnswer[0].toUpperCase() + playerAnswer.substring(1);
+    let playerSelection = promptPlayer();
+    console.log(playRound(playerSelection, computerSelection));
 
-    // Create function that randomly returns Rock, Paper, or Scissors
-    // This function is used for the computer's hand
+    // Player's play
+    function promptPlayer() {
+        let choice = prompt("Do you choose Rock, Paper, or Scissors?");
+        choice = choice[0].toUpperCase() + choice.substring(1);
+        return choice;
+    }
+
+    // Computer's play
     function computerPlay() {
-        let computerChoices = ['Rock', 'Paper', 'Scissors']
-        let computerRandom = Math.floor(Math.random() * 3);
-        return computerChoices[computerRandom];
+        let choice = ['Rock', 'Paper', 'Scissors']
+        let random = Math.floor(Math.random() * 3);
+        return choice[random];
     }
 
-    // Create a function that plays a single round of RPS
-    switch (true) {
-        // These are the player's winning combinations
-        case playerSelection == 'Rock' && computerSelection == 'Scissors':
-        case playerSelection == 'Paper' && computerSelection == 'Rock':
-        case playerSelection == 'Scissors' && computerSelection == 'Paper':
-            console.log(`You've Won! ${playerSelection} beats ${computerSelection}!`);
-            break;
-        // These are the player's losing combinations
-        case playerSelection == 'Rock' && computerSelection == 'Paper':
-        case playerSelection == 'Paper' && computerSelection == 'Scissors':
-        case playerSelection == 'Scissors' && computerSelection == 'Rock':
-            console.log(`You've Lost! ${playerSelection} loses to ${computerSelection}.`);
-            break;
-        
-        default:
-            console.log(`It's a tie! ${playerSelection} equals ${computerSelection}.`);
+    // One round of 'RPS'
+    function playRound(playerSelection, computerSelection) {
+        if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
+            let declare = `You win! ${playerSelection} beats ${computerSelection}`;
+            return declare;
+        } else if (playerSelection == 'Paper' && computerSelection == 'Rock') {
+            let declare = `You win! ${playerSelection} beats ${computerSelection}`;
+            return declare;
+        } else if (playerSelection == 'Scissors' && computerSelection == 'Paper') {
+            let declare = `You win! ${playerSelection} beats ${computerSelection}`;
+            return declare;
+        } else if (playerSelection == computerSelection) {
+            let declare = `It's a tie! ${playerSelection} equals ${computerSelection}`;
+            return declare;
+        } else {
+            let declare = `You lose! ${playerSelection} loses to ${computerSelection}`;
+            return declare;
+        }
     }
+    
 
 
 
